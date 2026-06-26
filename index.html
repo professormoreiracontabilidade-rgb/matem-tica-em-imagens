@@ -90,7 +90,7 @@ button{
 <div class="topo" id="contador">1 / 60</div>
 
 <div class="area-imagem">
-  <img id="slide" src="SLIDES/01.png">
+ <img id="slide" src="01.png">
 </div>
 
 <div class="toque esquerda" onclick="voltar()"></div>
@@ -108,7 +108,7 @@ let atual = 1;
 
 function carregar(){
   let numero = atual.toString().padStart(2, '0');
-  document.getElementById("slide").src = "SLIDES/" + numero + ".png";
+  document.getElementById("slide").src = numero + ".png";
   document.getElementById("contador").innerText = atual + " / " + total;
 }
 
