@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aula Mobile</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:#000;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  font-family:Arial, sans-serif;
+}
+
+.topo{
+  height:42px;
+  background:#111;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:16px;
+}
+
+.area-imagem{
+  flex:1;
+  background:#000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+
+#slide{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.menu{
+  height:70px;
+  background:#111;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  border-top:1px solid #333;
+}
+
+button{
+  height:48px;
+  padding:0 14px;
+  font-size:15px;
+  border:none;
+  border-radius:10px;
+  background:#b00020;
+  color:white;
+  cursor:pointer;
+}
+
+.toque{
+  position:fixed;
+  top:42px;
+  bottom:70px;
+  width:50%;
+  z-index:5;
+}
+
+.esquerda{
+  left:0;
+}
+
+.direita{
+  right:0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="topo" id="contador">1 / 60</div>
+
+<div class="area-imagem">
+  <img id="slide" src="SLIDES/01.png">
+</div>
+
+<div class="toque esquerda" onclick="voltar()"></div>
+<div class="toque direita" onclick="avancar()"></div>
+
+<div class="menu">
+  <button onclick="voltar()">⬅ Voltar</button>
+  <button onclick="reiniciar()">🔄 Reiniciar</button>
+  <button onclick="avancar()">Avançar ➡</button>
+</div>
+
+<script>
+const total = 60;
+let atual = 1;
+
+function carregar(){
+  let numero = atual.toString().padStart(2, '0');
+  document.getElementById("slide").src = "SLIDES/" + numero + ".png";
+  document.getElementById("contador").innerText = atual + " / " + total;
+}
+
+function avancar(){
+  if(atual < total){
+    atual++;
+    carregar();
+  }
+}
+
+function voltar(){
+  if(atual > 1){
+    atual--;
+    carregar();
+  }
+}
+
+function reiniciar(){
+  atual = 1;
+  carregar();
+}
+
+document.addEventListener("keydown", function(e){
+  if(e.key === "ArrowRight") avancar();
+  if(e.key === "ArrowLeft") voltar();
+});
+</script>
+
+</body>
+</html>
